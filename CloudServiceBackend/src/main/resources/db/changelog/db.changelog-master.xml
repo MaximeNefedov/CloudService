@@ -1,0 +1,15 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+
+        <include file="migrations/001/001-create-users-table.xml" relativeToChangelogFile="true"/>
+        <include file="migrations/002/002-create-roles-table.xml" relativeToChangelogFile="true"/>
+        <include file="migrations/003/003-create-authorities-table.xml" relativeToChangelogFile="true"/>
+        <include file="migrations/004/004-create-users-roles-table.xml" relativeToChangelogFile="true"/>
+        <include file="migrations/005/005-create-roles-authorities-table.xml" relativeToChangelogFile="true"/>
+        <include file="migrations/006/006-fill-tables-for-test.xml" relativeToChangelogFile="true"/>
+        <include file="migrations/007/007-add-roles-and-authorities.xml" relativeToChangelogFile="true"/>
+        <include file="migrations/008/008-add-files-table.xml" relativeToChangelogFile="true"/>
+</databaseChangeLog>
