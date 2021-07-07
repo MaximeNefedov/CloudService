@@ -68,7 +68,6 @@ public class CloudServiceIntegrationTest {
             .withExposedPorts(PORT)
             .withEnv(Map.of("SPRING_DATASOURCE_URL", "jdbc:postgresql://postgres:5432/postgres"))
             .dependsOn(postgresContainer);
-
     public static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
 
         @Override
