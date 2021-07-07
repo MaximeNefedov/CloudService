@@ -1,13 +1,23 @@
 version: "3.8"
-
+#docker-compose run cloud_file_service sh
 services:
+  cloud_file_service:
+    build:
+      ./
+    ports:
+      - 8888:8888
+    image: cloud_service_app:1.0
+    depends_on:
+      - postgres
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres/postgres
   postgres:
     build:
       ./
     image: postgres
-    ports:
-      - 5432:5432
     volumes:
-    - ./postgres_data:/var/lib/postgres
+      - ./postgres_data:/var/lib/postgres
     environment:
+      - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=postgres

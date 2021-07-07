@@ -1,54 +1,47 @@
 package ru.netology.cloud_service_app.services;
 
 import lombok.val;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import ru.netology.cloud_service_app.entities.UploadedFile;
 import ru.netology.cloud_service_app.models.FileData;
-import ru.netology.cloud_service_app.models.file_uploaders.FileUploader;
-import ru.netology.cloud_service_app.repositories.FileRepository;
-import ru.netology.cloud_service_app.repositories.UserRepository;
+import ru.netology.cloud_service_app.repositories.file_repositories.CloudServiceFileRepository;
+import ru.netology.cloud_service_app.repositories.user_repositories.CloudServiceUserRepository;
 
-import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 
+@Transactional
 @Service
 public class FileService {
 
-    private final FileRepository fileRepository;
-    private final UserRepository userRepository;
-    private final FileUploader fileUploader;
+    private final CloudServiceFileRepository cloudServiceFileRepository;
+    private final CloudServiceUserRepository cloudServiceUserRepository;
 
-    public FileService(FileRepository fileRepository,
-                       UserRepository userRepository,
-                       @Qualifier("defaultFileUploader") FileUploader fileUploader) {
-        this.fileRepository = fileRepository;
-        this.userRepository = userRepository;
-        this.fileUploader = fileUploader;
+    public FileService(CloudServiceFileRepository cloudServiceFileRepository,
+                       CloudServiceUserRepository cloudServiceUserRepository) {
+        this.cloudServiceFileRepository = cloudServiceFileRepository;
+        this.cloudServiceUserRepository = cloudServiceUserRepository;
     }
 
-    @Transactional
     public List<FileData> getAllFiles(int limit, String login) {
-        System.out.println(login);
-        val files = fileRepository.findFileByUserLogin(login, PageRequest.of(0, limit));
-        List<FileData> fileDataList = new ArrayList<>(limit);
-        for (UploadedFile uploadedFile : files) {
-            fileDataList.add(new FileData(uploadedFile.getName(), uploadedFile.getSize()));
-        }
-        return fileDataList;
+        return cloudServiceFileRepository.getAllFiles(limit, login);
     }
 
     public void saveFile(MultipartFile multipartFile, String login) {
-        val user = userRepository.findByLogin(login)
-                .orElseThrow(IllegalArgumentException::new);
-        fileUploader.uploadToDb(multipartFile, user);
+        val user = cloudServiceUserRepository.findUserByLogin(login);
+        cloudServiceFileRepository.saveFile(multipartFile, user);
     }
 
     public UploadedFile downloadFile(String filename, String login) {
-        return fileRepository.findByNameAndUserLogin(filename, login)
-                .orElseThrow(IllegalArgumentException::new);
+        return cloudServiceFileRepository.downloadFile(filename, login);
+    }
+
+    public void deleteFile(String filename, String login) {
+        cloudServiceFileRepository.deleteFile(filename, login);
+    }
+
+    public void editFilename(String oldFilename, String newFilename, String login) {
+        cloudServiceFileRepository.editFilename(oldFilename, newFilename, login);
     }
 }

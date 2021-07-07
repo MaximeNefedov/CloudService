@@ -23,9 +23,14 @@ public class UploadedFile {
     @Column(nullable = false)
     private long size;
     @Column(nullable = false)
-    private LocalDateTime date;
-//    @Lob
+    private LocalDateTime changeTime;
+    @Column(nullable = false)
     private byte[] fileBody;
+    @Column(nullable = false)
+    private String hash;
+    @Enumerated(EnumType.STRING)
+    private UploadedFileStatus status;
+    private LocalDateTime removalTime;
     @ManyToOne
     @ToString.Exclude
     private User user;
