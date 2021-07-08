@@ -5,6 +5,8 @@ import org.springframework.stereotype.Component;
 import ru.netology.cloud_service_app.entities.UploadedFile;
 import ru.netology.cloud_service_app.repositories.file_repositories.FileRepository;
 
+import java.time.LocalDateTime;
+
 import static ru.netology.cloud_service_app.entities.UploadedFileStatus.ACTIVE;
 import static ru.netology.cloud_service_app.entities.UploadedFileStatus.DELETED;
 
@@ -26,6 +28,8 @@ public class DbHandlerImpl implements DbHandler {
             val fileBody = uploadedFile.getFileBody();
             if (isSameFile(fileBody, fileBites)) {
                 uploadedFile.setStatus(ACTIVE);
+                uploadedFile.setChangeTime(LocalDateTime.now());
+                uploadedFile.setRemovalTime(null);
                 return true;
             } else {
                 fileRepository.deleteByHash(hash);

@@ -6,12 +6,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.multipart.MultipartFile;
+import ru.netology.cloud_service_app.configs.FileUploaderConfiguration;
 import ru.netology.cloud_service_app.entities.UploadedFile;
 import ru.netology.cloud_service_app.entities.User;
 import ru.netology.cloud_service_app.exceptions.SaveFileException;
 import ru.netology.cloud_service_app.handlers.dbhandlers.DbHandler;
 import ru.netology.cloud_service_app.repositories.file_repositories.FileRepository;
-import ru.netology.cloud_service_app.configs.FileUploaderConfiguration;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -66,6 +66,7 @@ public class DefaultFileHandler implements FileHandler {
             val newHash = getFileHash(newFilename, file.getUser().getLogin());
             file.setHash(newHash);
             file.setName(newFilename);
+            file.setChangeTime(LocalDateTime.now());
             return true;
         } else {
             return false;
