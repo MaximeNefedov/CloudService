@@ -10,7 +10,7 @@ import ru.netology.cloud_service_app.exceptions.DeleteFileException;
 import ru.netology.cloud_service_app.exceptions.DownloadFileException;
 import ru.netology.cloud_service_app.exceptions.EditFileException;
 import ru.netology.cloud_service_app.models.FileData;
-import ru.netology.cloud_service_app.models.file_uploaders.FileHandler;
+import ru.netology.cloud_service_app.handlers.file_uploaders.FileHandler;
 
 import java.util.ArrayList;
 import java.util.Collections;

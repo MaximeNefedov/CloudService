@@ -2,8 +2,8 @@ package ru.netology.cloud_service_app.services;
 
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
-import ru.netology.cloud_service_app.models.file_uploaders.DefaultFileHandler;
-import ru.netology.cloud_service_app.models.file_uploaders.FileHandler;
+import ru.netology.cloud_service_app.handlers.file_uploaders.DefaultFileHandler;
+import ru.netology.cloud_service_app.handlers.file_uploaders.FileHandler;
 import ru.netology.cloud_service_app.repositories.file_repositories.CloudServiceFileRepository;
 import ru.netology.cloud_service_app.repositories.file_repositories.DefaultCloudServiceFileRepository;
 import ru.netology.cloud_service_app.repositories.user_repositories.CloudServiceUserRepository;

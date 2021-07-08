@@ -47,7 +47,6 @@ public class JwtUsernamePasswordAuthenticationFilter extends UsernamePasswordAut
             );
             authenticationManagerResult = authenticationManager.authenticate(authentication);
         } catch (AuthenticationException e) {
-            log.error(e.getLocalizedMessage());
             securityExceptionHandler.commence(request, response, e);
         }
         return authenticationManagerResult;

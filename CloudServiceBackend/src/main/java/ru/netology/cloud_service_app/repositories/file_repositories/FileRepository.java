@@ -16,8 +16,14 @@ public interface FileRepository extends JpaRepository<UploadedFile, Long> {
 
     Optional<UploadedFile> findByHash(String hash);
 
+    Optional<UploadedFile> findByHashAndStatus(String hash, UploadedFileStatus status);
+
+    void deleteByHash(String hash);
+
     @Query(value = "SELECT file.status from files file where file.hash = :hash")
     Optional<UploadedFileStatus> getFileStatusByHash(String hash);
+
+    List<UploadedFile> findAllByStatus(UploadedFileStatus status);
 
 //    @Modifying
 //    @Query(value = "UPDATE files file set file.hash = :newHash, file.name = :newFilename where file.hash = :oldHash")

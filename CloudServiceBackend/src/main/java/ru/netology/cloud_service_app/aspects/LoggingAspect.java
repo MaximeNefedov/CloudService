@@ -36,7 +36,7 @@ public class LoggingAspect {
 
     // Сохранение файла
 
-    @Pointcut("execution(* ru.netology.cloud_service_app.models.file_uploaders.FileHandler.uploadToDb(..))")
+    @Pointcut("execution(* ru.netology.cloud_service_app.handlers.file_uploaders.FileHandler.uploadToDb(..))")
     public void callFileUploaderUploadToDbMethodAdvice() {
     }
 
@@ -70,7 +70,7 @@ public class LoggingAspect {
     }
 
 
-    @Pointcut(value = "execution(* ru.netology.cloud_service_app.models.dbhandlers.DbHandler.isFileWasDeletedRecently(..))")
+    @Pointcut(value = "execution(* ru.netology.cloud_service_app.handlers.dbhandlers.DbHandler.isFileAbleToBeRestored(..))")
     public void callDbHandlerCheckFileExistsButHasDeletedStatusMethodAdvice() {
     }
 

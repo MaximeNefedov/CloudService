@@ -31,11 +31,6 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String login) {
         val user = cloudServiceUserRepository.findUserByLogin(login);
-        if (user == null) {
-            val msg = String.format("Ошибка аутентификации пользователя, неверный логин: %s", login);
-            log.error(msg);
-            throw new InvalidUserDetailsException(msg);
-        }
 
         return User.builder()
                 .username(user.getLogin())

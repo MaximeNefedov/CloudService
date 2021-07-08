@@ -1,4 +1,4 @@
-package ru.netology.cloud_service_app.models.file_uploaders;
+package ru.netology.cloud_service_app.handlers.file_uploaders;
 
 import lombok.val;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -9,7 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import ru.netology.cloud_service_app.entities.UploadedFile;
 import ru.netology.cloud_service_app.entities.User;
 import ru.netology.cloud_service_app.exceptions.SaveFileException;
-import ru.netology.cloud_service_app.models.dbhandlers.DbHandler;
+import ru.netology.cloud_service_app.handlers.dbhandlers.DbHandler;
 import ru.netology.cloud_service_app.repositories.file_repositories.FileRepository;
 import ru.netology.cloud_service_app.configs.FileUploaderConfiguration;
 
@@ -90,6 +90,7 @@ public class DefaultFileHandler implements FileHandler {
             val filename = multipartFile.getOriginalFilename();
             val contentType = multipartFile.getContentType();
             val hash = getHash(filename, login, contentType);
+            final byte[] fileBytes = multipartFile.getBytes();
             val fileToUpload = UploadedFile.builder()
                     .name(filename)
                     .contentType(contentType)
@@ -101,9 +102,7 @@ public class DefaultFileHandler implements FileHandler {
                     .status(ACTIVE)
                     .build();
 
-            if (dbHandler.isFileWasDeletedRecently(hash)) {
-                fileRepository.setActiveFileStatus(hash, ACTIVE);
-            } else {
+            if (!dbHandler.isFileAbleToBeRestored(hash, fileBytes)) {
                 fileRepository.save(fileToUpload);
             }
         } catch (IOException e) {

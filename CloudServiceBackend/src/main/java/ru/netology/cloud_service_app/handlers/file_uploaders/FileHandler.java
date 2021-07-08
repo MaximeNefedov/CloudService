@@ -1,4 +1,4 @@
-package ru.netology.cloud_service_app.models.file_uploaders;
+package ru.netology.cloud_service_app.handlers.file_uploaders;
 
 import org.springframework.web.multipart.MultipartFile;
 import ru.netology.cloud_service_app.entities.UploadedFile;

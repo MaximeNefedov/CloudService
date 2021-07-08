@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import ru.netology.cloud_service_app.configs.FileUploaderConfiguration;
-import ru.netology.cloud_service_app.models.file_uploaders.FileHandler;
+import ru.netology.cloud_service_app.handlers.file_uploaders.FileHandler;
 import ru.netology.cloud_service_app.repositories.file_repositories.FileRepository;
 import ru.netology.cloud_service_app.repositories.user_repositories.UserRepository;
 import ru.netology.cloud_service_app.services.FileService;
