@@ -90,19 +90,19 @@ public class DefaultFileHandler implements FileHandler {
             val filename = multipartFile.getOriginalFilename();
             val contentType = multipartFile.getContentType();
             val hash = getHash(filename, login, contentType);
-            final byte[] fileBytes = multipartFile.getBytes();
-            val fileToUpload = UploadedFile.builder()
-                    .name(filename)
-                    .contentType(contentType)
-                    .size(multipartFile.getSize())
-                    .changeTime(LocalDateTime.now())
-                    .fileBody(multipartFile.getBytes())
-                    .user(user)
-                    .hash(hash)
-                    .status(ACTIVE)
-                    .build();
+            val fileBytes = multipartFile.getBytes();
 
             if (!dbHandler.isFileAbleToBeRestored(hash, fileBytes)) {
+                val fileToUpload = UploadedFile.builder()
+                        .name(filename)
+                        .contentType(contentType)
+                        .size(multipartFile.getSize())
+                        .changeTime(LocalDateTime.now())
+                        .fileBody(multipartFile.getBytes())
+                        .user(user)
+                        .hash(hash)
+                        .status(ACTIVE)
+                        .build();
                 fileRepository.save(fileToUpload);
             }
         } catch (IOException e) {
