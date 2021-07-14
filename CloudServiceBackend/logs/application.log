@@ -161,3 +161,50 @@
 [INFO ] 2021-07-14 17:56:39 [main] INFO  r.n.c.i.CloudServiceIntegrationTest - Started CloudServiceIntegrationTest in 8.616 seconds (JVM running for 47.648)
 [INFO ] 2021-07-14 17:56:39 [main] INFO  o.s.b.a.ApplicationAvailabilityBean - Application availability state LivenessState changed to CORRECT
 [INFO ] 2021-07-14 17:56:39 [main] INFO  o.s.b.a.ApplicationAvailabilityBean - Application availability state ReadinessState changed to ACCEPTING_TRAFFIC
+[INFO ] 2021-07-14 22:19:10 [main] INFO  r.n.c.CloudServiceAppApplication - Starting CloudServiceAppApplication using Java 14.0.1 on MBP-Maksim.Dlink with PID 24025 (/Users/maksim/Desktop/CloudService/CloudServiceBackend/target/classes started by maksim in /Users/maksim/Desktop/CloudService/CloudServiceBackend)
+[INFO ] 2021-07-14 22:19:10 [main] INFO  r.n.c.CloudServiceAppApplication - No active profile set, falling back to default profiles: default
+[WARN ] 2021-07-14 22:19:10 [background-preinit] WARN  o.s.h.c.j.Jackson2ObjectMapperBuilder - For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+[INFO ] 2021-07-14 22:19:11 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 2021-07-14 22:19:11 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 67 ms. Found 2 JPA repository interfaces.
+[INFO ] 2021-07-14 22:19:11 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@527fc8e' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2021-07-14 22:19:11 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2021-07-14 22:19:11 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8888 (http)
+[INFO ] 2021-07-14 22:19:11 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+[INFO ] 2021-07-14 22:19:11 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.46]
+[INFO ] 2021-07-14 22:19:12 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 2021-07-14 22:19:12 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1779 ms
+[INFO ] 2021-07-14 22:19:12 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[INFO ] 2021-07-14 22:19:12 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[INFO ] 2021-07-14 22:19:12 [main] INFO  liquibase.lockservice - Successfully acquired change log lock
+[INFO ] 2021-07-14 22:19:13 [main] INFO  liquibase.changelog - Reading from public.databasechangelog
+[INFO ] 2021-07-14 22:19:13 [main] INFO  liquibase.lockservice - Successfully released change log lock
+[INFO ] 2021-07-14 22:19:13 [main] INFO  liquibase.lockservice - Successfully acquired change log lock
+[WARN ] 2021-07-14 22:19:13 [main] WARN  liquibase.hub - Skipping auto-registration
+[INFO ] 2021-07-14 22:19:13 [main] INFO  liquibase.lockservice - Successfully released change log lock
+[INFO ] 2021-07-14 22:19:13 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 2021-07-14 22:19:13 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.31.Final
+[INFO ] 2021-07-14 22:19:13 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[INFO ] 2021-07-14 22:19:13 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+[INFO ] 2021-07-14 22:19:14 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO ] 2021-07-14 22:19:14 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[WARN ] 2021-07-14 22:19:14 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO ] 2021-07-14 22:19:15 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.web.filter.CorsFilter@3abb6aa, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@34074149, org.springframework.security.web.context.SecurityContextPersistenceFilter@2723b0d0, org.springframework.security.web.header.HeaderWriterFilter@54d9b23a, org.springframework.web.filter.CorsFilter@3f7bf0f6, org.springframework.security.web.authentication.logout.LogoutFilter@12d8e6b6, ru.netology.cloud_service_app.security.jwt.JwtUsernamePasswordAuthenticationFilter@45430a27, ru.netology.cloud_service_app.security.jwt.JwtTokenVerifier@1b83fac3, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@47d0195b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6d96a895, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1500edf3, org.springframework.security.web.session.SessionManagementFilter@428e9be2, org.springframework.security.web.access.ExceptionTranslationFilter@53b83897, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@28f081ad]
+[INFO ] 2021-07-14 22:19:15 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8888 (http) with context path ''
+[INFO ] 2021-07-14 22:19:15 [main] INFO  r.n.c.CloudServiceAppApplication - Started CloudServiceAppApplication in 5.947 seconds (JVM running for 7.106)
+[INFO ] 2021-07-14 22:19:15 [main] INFO  o.s.b.a.ApplicationAvailabilityBean - Application availability state LivenessState changed to CORRECT
+[INFO ] 2021-07-14 22:19:15 [main] INFO  o.s.b.a.ApplicationAvailabilityBean - Application availability state ReadinessState changed to ACCEPTING_TRAFFIC
+[INFO ] 2021-07-14 22:19:19 [http-nio-8888-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 2021-07-14 22:19:19 [http-nio-8888-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[INFO ] 2021-07-14 22:19:19 [http-nio-8888-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+[INFO ] 2021-07-14 22:19:19 [http-nio-8888-exec-2] INFO  r.n.c.aspects.LoggingAspect - Принят запрос от пользоваетеля max@mail.ru на просмотр всех файлов
+[INFO ] 2021-07-14 22:19:19 [http-nio-8888-exec-2] INFO  r.n.c.aspects.LoggingAspect - Пользователь max@mail.ru получил список файлов: [FileData(fileName=1.jpeg, size=282426)]
+[INFO ] 2021-07-14 22:19:22 [http-nio-8888-exec-4] INFO  r.n.c.aspects.LoggingAspect - Принят запрос от пользоваетеля max@mail.ru на удаление файла 1.jpeg
+[INFO ] 2021-07-14 22:19:22 [http-nio-8888-exec-4] INFO  r.n.c.aspects.LoggingAspect - Пользоваетель max@mail.ru успешно удалил файл 1.jpeg
+[INFO ] 2021-07-14 22:19:25 [http-nio-8888-exec-6] INFO  r.n.c.aspects.LoggingAspect - Принят запрос от пользоваетеля max@mail.ru на просмотр всех файлов
+[INFO ] 2021-07-14 22:19:25 [http-nio-8888-exec-6] INFO  r.n.c.aspects.LoggingAspect - Пользователь max@mail.ru получил список файлов: []
+[INFO ] 2021-07-14 22:19:28 [http-nio-8888-exec-8] INFO  r.n.c.aspects.LoggingAspect - Принят запрос от пользоваетеля max@mail.ru на сохранение файла
+[INFO ] 2021-07-14 22:19:28 [http-nio-8888-exec-8] INFO  r.n.c.aspects.LoggingAspect - Осуществляется проверка, возможно ли восстановить удаленный файл
+[INFO ] 2021-07-14 22:19:28 [http-nio-8888-exec-8] INFO  r.n.c.aspects.LoggingAspect - Файл восстановлен, его статус обновился
+[INFO ] 2021-07-14 22:19:28 [http-nio-8888-exec-8] INFO  r.n.c.aspects.LoggingAspect - Пользователь max@mail.ru успешно сохранил файл
+[INFO ] 2021-07-14 22:19:30 [http-nio-8888-exec-10] INFO  r.n.c.aspects.LoggingAspect - Принят запрос от пользоваетеля max@mail.ru на просмотр всех файлов
+[INFO ] 2021-07-14 22:19:30 [http-nio-8888-exec-10] INFO  r.n.c.aspects.LoggingAspect - Пользователь max@mail.ru получил список файлов: [FileData(fileName=1.jpeg, size=282426)]

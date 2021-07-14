@@ -28,9 +28,6 @@ import ru.netology.cloud_service_app.models.NewFilename;
 import ru.netology.cloud_service_app.repositories.file_repositories.FileRepository;
 import ru.netology.cloud_service_app.security.jwt.JwtTokenHandler;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
@@ -86,11 +83,11 @@ public class CloudServiceIntegrationTest {
             .withEnv(Map.of("SPRING_DATASOURCE_URL", "jdbc:postgresql://postgres_db:5432/postgres"))
             .dependsOn(postgresContainer);
 
-//    @Container
-//    public static GenericContainer<?> frontendApplication = new GenericContainer<>("front_app:1.0")
-//            .withNetwork(NETWORK)
-//            .withExposedPorts(FRONTEND_PORT)
-//            .dependsOn(backendApplication);
+    @Container
+    public static GenericContainer<?> frontendApplication = new GenericContainer<>("front_app:1.0")
+            .withNetwork(NETWORK)
+            .withExposedPorts(FRONTEND_PORT)
+            .dependsOn(backendApplication);
 
     public static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
 
@@ -115,10 +112,10 @@ public class CloudServiceIntegrationTest {
         Assertions.assertTrue(backendApplication.isRunning());
     }
 
-//    @Test
-//    void testFrontendContainerShouldWork() {
-//        Assertions.assertTrue(frontendApplication.isRunning());
-//    }
+    @Test
+    void testFrontendContainerShouldWork() {
+        Assertions.assertTrue(frontendApplication.isRunning());
+    }
 
     private void setFilesForTest() {
         val fileBody = new byte[100];
