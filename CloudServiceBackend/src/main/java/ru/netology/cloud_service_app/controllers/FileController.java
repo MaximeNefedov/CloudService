@@ -57,8 +57,9 @@ public class FileController {
     @PreAuthorize("hasAuthority('WRITE')")
     @PostMapping("/file")
     @SneakyThrows
-    public void saveFile(@NotNull MultipartFile file, Principal principal) {
+    public ResponseEntity<String> saveFile(@NotNull MultipartFile file, Principal principal) {
         fileService.saveFile(file, principal.getName());
+        return new ResponseEntity<>("Success save", HttpStatus.OK);
     }
 
     @PreAuthorize("hasAuthority('DELETE')")
