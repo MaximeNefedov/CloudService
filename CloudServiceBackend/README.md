@@ -1,7 +1,24 @@
 # Дипломный проект "Облачное хранилище"
 
 ## Введение
+Данная работа выполнена в соответствии с требованиями: https://github.com/netology-code/jd-homeworks/blob/master/diploma/cloudservice.md
+
+Проект является backend составляющей restful-сервиса облачного хранилища.
+
+Основной функционал:
+1) Хранение файлов в облаке
+2) Изменение файлов
+3) Удаление файлов
+4) Добавление файлов
+5) Передача файлов от сервера на клиент
+
+Приложение использует реляционную базу данных PostgreSQL для хранения файлов и данных о пользователях
+
+Ссылка на frontend: https://github.com/netology-code/jd-homeworks/tree/master/diploma/netology-diplom-frontend
 ## Инструкция для использования
+Frontend - приложение работает на порту 8080,
+backend на порту 8888, а СУБД PostgreSQL на 5432.
+Запустить весь сервис целиком можно с помощью утилиты docker-compose: https://github.com/MaximeNefedov/CloudService/blob/master/CloudServiceBackend/docker-compose.yml
 ## Описание работы backend - сервиса
 
 ### Процесс аутентификации
