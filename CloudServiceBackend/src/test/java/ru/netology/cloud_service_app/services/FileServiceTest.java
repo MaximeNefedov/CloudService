@@ -51,7 +51,6 @@ class FileServiceTest {
 
     private boolean isFileDataListEquals(List<FileData> validFileDataList,
                                          List<FileData> fileDataListFromDb) {
-        if (validFileDataList == fileDataListFromDb) return true;
         if (validFileDataList.size() == fileDataListFromDb.size()) {
             int counter = 0;
             for (FileData fileData : validFileDataList) {

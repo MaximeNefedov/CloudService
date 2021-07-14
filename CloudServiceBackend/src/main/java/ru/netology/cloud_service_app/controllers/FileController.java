@@ -1,5 +1,6 @@
 package ru.netology.cloud_service_app.controllers;
 
+import lombok.SneakyThrows;
 import lombok.val;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
@@ -15,10 +16,12 @@ import ru.netology.cloud_service_app.models.FileData;
 import ru.netology.cloud_service_app.models.NewFilename;
 import ru.netology.cloud_service_app.services.FileService;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.io.BufferedInputStream;
 import java.security.Principal;
 import java.util.List;
 
@@ -53,6 +56,7 @@ public class FileController {
 
     @PreAuthorize("hasAuthority('WRITE')")
     @PostMapping("/file")
+    @SneakyThrows
     public void saveFile(@NotNull MultipartFile file, Principal principal) {
         fileService.saveFile(file, principal.getName());
     }

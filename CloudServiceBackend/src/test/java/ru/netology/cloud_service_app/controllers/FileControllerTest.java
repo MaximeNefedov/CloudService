@@ -40,7 +40,6 @@ class FileControllerTest {
     private static final String INVALID_TOKEN = "Bearer token";
     private static final String VALID_FILENAME = "111.jpeg";
     private static final String INVALID_FILENAME = "111a";
-    private static final List<FileData> files;
 
     static {
         val secretKey = "{secret_key_for_application_cloud_service}";
@@ -53,11 +52,6 @@ class FileControllerTest {
                                 new SimpleGrantedAuthority("DELETE"),
                                 new SimpleGrantedAuthority("WRITE")), 7
                 );
-
-        files = new ArrayList<>(Arrays.asList(
-                new FileData("111.jpeg", 1000),
-                new FileData("222.jpeg", 2000)
-        ));
     }
 
     @MockBean

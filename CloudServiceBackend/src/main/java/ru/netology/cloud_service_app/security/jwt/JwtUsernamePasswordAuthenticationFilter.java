@@ -35,7 +35,6 @@ public class JwtUsernamePasswordAuthenticationFilter extends UsernamePasswordAut
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request,
                                                 HttpServletResponse response) throws AuthenticationException {
-
         Authentication authenticationManagerResult = null;
         try {
             val authenticationRequest = new ObjectMapper()

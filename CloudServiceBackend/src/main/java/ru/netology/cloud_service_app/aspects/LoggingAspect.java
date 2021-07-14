@@ -145,6 +145,21 @@ public class LoggingAspect {
     public void callCloudServiceFileRepositoryDownloadFileMethodAdvice() {
     }
 
+    @Pointcut(value = "execution(* ru.netology.cloud_service_app.controllers.FileController.downloadFile(..)) && args(filename, principal))", argNames = "filename,principal")
+    public void callFileControllerDownloadFileMethodAdvice(String filename, Principal principal) {
+
+    }
+
+    @Before(value = "callFileControllerDownloadFileMethodAdvice(filename, principal)", argNames = "filename,principal")
+    public void callFileControllerDownloadFileBeforeMethodAdvice(String filename, Principal principal) {
+        log.info(String.format("Принят запрос от пользователя %s на скачивание файла %s", principal.getName(), filename));
+    }
+
+    @AfterReturning(value = "callFileControllerDownloadFileMethodAdvice(filename, principal)", argNames = "filename,principal")
+    public void callFileControllerDownloadFileAfterReturningMethodAdvice(String filename, Principal principal) {
+        log.info(String.format("Пользователь %s успешно скачал файл %s", principal.getName(), filename));
+    }
+
     @AfterThrowing(pointcut = "callCloudServiceFileRepositoryDownloadFileMethodAdvice()", throwing = "exception", argNames = "exception")
     public void callCloudServiceFileRepositoryDownloadFileAfterThrowingMethodAdvice(Throwable exception) {
         log.error("Ошибка загрузки файла. " + exception.getMessage());

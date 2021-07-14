@@ -1,7 +1,15 @@
-version: "3.8"
-#docker-compose run cloud_file_service sh
+version: "3.3"
+#docker-compose run cloud_file_service_backend sh
+#docker-compose run cloud_file_service_frontend sh
+#docker-compose up --force-recreate
 services:
-  cloud_file_service:
+  cloud_file_service_frontend:
+    build:
+      ./
+    ports:
+    - 8080:8080
+    image: front_app:1.0
+  cloud_file_service_backend:
     build:
       ./
     ports:
@@ -14,7 +22,7 @@ services:
   postgres:
     build:
       ./
-    image: library/postgres:13.2
+    image: postgres
     ports:
     - 5432:5432
     volumes:

@@ -64,7 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .and()
 
-                .logout().logoutSuccessHandler(new CustomLogoutSuccessHandler())
+                .logout().logoutSuccessHandler(new CustomLogoutSuccessHandler(jwtConfig))
 
                 .and()
 
@@ -75,7 +75,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(new CorsFilter(corsConfigurationSource()), ChannelProcessingFilter.class)
                 .addFilter(new JwtUsernamePasswordAuthenticationFilter(authenticationManager(), jwtConfig, securityExceptionHandler()))
                 .addFilterAfter(new JwtTokenVerifier(jwtConfig), JwtUsernamePasswordAuthenticationFilter.class)
-
                 .authorizeRequests()
                 .anyRequest().authenticated();
     }
