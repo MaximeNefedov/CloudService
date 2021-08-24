@@ -1,8 +1,8 @@
-package ru.netology.cloud_service_app.handlers.dbhandlers;
+package ru.netology.cloud_service_app.repositories.handlers.dbhandlers;
 
 import lombok.val;
 import org.springframework.stereotype.Component;
-import ru.netology.cloud_service_app.repositories.file_repositories.FileRepository;
+import ru.netology.cloud_service_app.repositories.FileRepository;
 
 import java.time.LocalDateTime;
 

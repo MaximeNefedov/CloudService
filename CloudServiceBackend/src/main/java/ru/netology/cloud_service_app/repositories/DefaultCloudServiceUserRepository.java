@@ -1,4 +1,4 @@
-package ru.netology.cloud_service_app.repositories.user_repositories;
+package ru.netology.cloud_service_app.repositories;
 
 import org.springframework.stereotype.Repository;
 import ru.netology.cloud_service_app.entities.User;

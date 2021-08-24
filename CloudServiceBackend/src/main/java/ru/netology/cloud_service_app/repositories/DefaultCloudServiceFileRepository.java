@@ -1,4 +1,4 @@
-package ru.netology.cloud_service_app.repositories.file_repositories;
+package ru.netology.cloud_service_app.repositories;
 
 import lombok.val;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -9,7 +9,7 @@ import ru.netology.cloud_service_app.entities.User;
 import ru.netology.cloud_service_app.exceptions.DeleteFileException;
 import ru.netology.cloud_service_app.exceptions.DownloadFileException;
 import ru.netology.cloud_service_app.exceptions.EditFileException;
-import ru.netology.cloud_service_app.handlers.file_uploaders.FileHandler;
+import ru.netology.cloud_service_app.repositories.handlers.file_uploaders.FileHandler;
 import ru.netology.cloud_service_app.models.FileData;
 
 import java.util.ArrayList;

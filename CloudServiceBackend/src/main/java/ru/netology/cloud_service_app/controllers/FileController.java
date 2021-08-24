@@ -31,6 +31,7 @@ import java.util.List;
 public class FileController {
 
     private final FileService fileService;
+    private static final String REGEXP = "\\w+\\..+";
 
     public FileController(FileService fileService) {
         this.fileService = fileService;
@@ -43,39 +44,41 @@ public class FileController {
         return new ResponseEntity<>(allFiles, HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAuthority('READ')")
-    @GetMapping("/file")
-    public ResponseEntity<Resource> downloadFile(@RequestParam("filename") @Pattern(regexp = "\\w+\\..+") String filename,
-                                                 Principal principal) {
-        val file = fileService.downloadFile(filename, principal.getName());
-        return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(file.getContentType()))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename= " + file.getName())
-                .body(new ByteArrayResource(file.getFileBody()));
-    }
+//    @PreAuthorize("hasAuthority('READ')")
+//    @GetMapping("/file")
+//    public ResponseEntity<Resource> downloadFile(@RequestParam("filename") @Pattern(regexp = REGEXP) String filename,
+//                                                 Principal principal) {
+//        val file = fileService.downloadFile(filename, principal.getName());
+//        return ResponseEntity.ok()
+//                .contentType(MediaType.parseMediaType(file.getContentType()))
+//                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename= " + file.getName())
+//                .body(new ByteArrayResource(file.getFileBody()));
+//    }
 
     @PreAuthorize("hasAuthority('WRITE')")
     @PostMapping("/file")
-    @SneakyThrows
     public ResponseEntity<String> saveFile(@NotNull MultipartFile file, Principal principal) {
-        fileService.saveFile(file, principal.getName());
-        return new ResponseEntity<>("Success save", HttpStatus.OK);
+        val filename = file.getOriginalFilename();
+        if (filename != null && filename.matches(REGEXP)) {
+            fileService.saveFile(file, principal.getName());
+            return new ResponseEntity<>("Success save", HttpStatus.OK);
+        } else return new ResponseEntity<>("Bad request", HttpStatus.BAD_REQUEST);
     }
 
     @PreAuthorize("hasAuthority('DELETE')")
     @DeleteMapping("/file")
-    public ResponseEntity<String> deleteFile(@RequestParam("filename") @Pattern(regexp = "\\w+\\..+") String filename,
+    public ResponseEntity<String> deleteFile(@RequestParam("filename") @Pattern(regexp = REGEXP) String filename,
                                              Principal principal) {
         fileService.deleteFile(filename, principal.getName());
         return new ResponseEntity<>("Success deleted", HttpStatus.OK);
     }
-
-    @PreAuthorize("hasAuthority('WRITE')")
-    @PutMapping("/file")
-    public ResponseEntity<String> editFilename(@RequestParam("filename") @Pattern(regexp = "\\w+\\..+") String oldFilename,
-                                               @Valid @RequestBody NewFilename newFilename,
-                                               Principal principal) {
-        fileService.editFilename(oldFilename, newFilename.getFilename(), principal.getName());
-        return new ResponseEntity<>("Success upload", HttpStatus.OK);
-    }
+//
+//    @PreAuthorize("hasAuthority('WRITE')")
+//    @PutMapping("/file")
+//    public ResponseEntity<String> editFilename(@RequestParam("filename") @Pattern(regexp = REGEXP) String oldFilename,
+//                                               @Valid @RequestBody NewFilename newFilename,
+//                                               Principal principal) {
+//        fileService.editFilename(oldFilename, newFilename.getFilename(), principal.getName());
+//        return new ResponseEntity<>("Success upload", HttpStatus.OK);
+//    }
 }

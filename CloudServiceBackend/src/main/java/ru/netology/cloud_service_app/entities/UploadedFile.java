@@ -32,6 +32,7 @@ public class UploadedFile {
     private UploadedFileStatus status;
     private LocalDateTime removalTime;
     @ManyToOne
+    @JoinColumn(name = "user_name")
     @ToString.Exclude
     private User user;
 }

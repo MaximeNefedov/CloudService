@@ -49,7 +49,7 @@ public class FileUploaderConfiguration {
         return mimeTypesMap;
     }
 
-    public Set<String> getInnerDirNames() {
+    private Set<String> getInnerDirNames() {
         return Set.of(imageDirName, textDirName, audioDirName, videoDirName, applicationDirName);
     }
 }

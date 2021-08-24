@@ -36,7 +36,7 @@ public class LoggingAspect {
 
     // Сохранение файла
 
-    @Pointcut("execution(* ru.netology.cloud_service_app.handlers.file_uploaders.FileHandler.uploadToDb(..))")
+    @Pointcut("execution(* ru.netology.cloud_service_app.repositories.handlers.file_uploaders.FileHandler.uploadToDb(..))")
     public void callFileUploaderUploadToDbMethodAdvice() {
     }
 
@@ -65,12 +65,12 @@ public class LoggingAspect {
         log.error(exception.getMessage());
     }
 
-    @Pointcut("execution(* ru.netology.cloud_service_app.repositories.user_repositories.CloudServiceUserRepository.findUserByLogin(..))")
+    @Pointcut("execution(* ru.netology.cloud_service_app.repositories.CloudServiceUserRepository.findUserByLogin(..))")
     public void callCloudServiceUserRepositoryMethodAdvice() {
     }
 
 
-    @Pointcut(value = "execution(* ru.netology.cloud_service_app.handlers.dbhandlers.DbHandler.isFileAbleToBeRestored(..))")
+    @Pointcut(value = "execution(* ru.netology.cloud_service_app.repositories.handlers.dbhandlers.DbHandler.isFileAbleToBeRestored(..))")
     public void callDbHandlerCheckFileExistsButHasDeletedStatusMethodAdvice() {
     }
 
@@ -102,7 +102,7 @@ public class LoggingAspect {
         log.info(String.format("Пользоваетель %s успешно удалил файл %s", principal.getName(), filename));
     }
 
-    @Pointcut(value = "execution(* ru.netology.cloud_service_app.repositories.file_repositories.CloudServiceFileRepository.deleteFile(..))")
+    @Pointcut(value = "execution(* ru.netology.cloud_service_app.repositories.CloudServiceFileRepository.deleteFile(..))")
     public void callCloudServiceFileRepositoryDeleteFileMethodAdvice() {
     }
 
@@ -131,7 +131,7 @@ public class LoggingAspect {
         log.info(String.format("Пользоваетель %s успешно изменил файл %s, новое название файла: %s", principal.getName(), oldFilename, newFilename.getFilename()));
     }
 
-    @Pointcut(value = "execution(* ru.netology.cloud_service_app.repositories.file_repositories.CloudServiceFileRepository.editFilename(..))")
+    @Pointcut(value = "execution(* ru.netology.cloud_service_app.repositories.CloudServiceFileRepository.editFilename(..))")
     public void callCloudServiceFileRepositoryEditFilenameMethodAdvice() {
     }
 
@@ -141,7 +141,7 @@ public class LoggingAspect {
     }
 
     // Загрузка файла с сервера
-    @Pointcut(value = "execution(* ru.netology.cloud_service_app.repositories.file_repositories.CloudServiceFileRepository.downloadFile(..)))")
+    @Pointcut(value = "execution(* ru.netology.cloud_service_app.repositories.CloudServiceFileRepository.downloadFile(..)))")
     public void callCloudServiceFileRepositoryDownloadFileMethodAdvice() {
     }
 

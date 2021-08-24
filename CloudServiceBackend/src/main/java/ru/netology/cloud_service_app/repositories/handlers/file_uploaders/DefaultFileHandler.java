@@ -1,4 +1,4 @@
-package ru.netology.cloud_service_app.handlers.file_uploaders;
+package ru.netology.cloud_service_app.repositories.handlers.file_uploaders;
 
 import lombok.val;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -10,8 +10,8 @@ import ru.netology.cloud_service_app.configs.FileUploaderConfiguration;
 import ru.netology.cloud_service_app.entities.UploadedFile;
 import ru.netology.cloud_service_app.entities.User;
 import ru.netology.cloud_service_app.exceptions.SaveFileException;
-import ru.netology.cloud_service_app.handlers.dbhandlers.DbHandler;
-import ru.netology.cloud_service_app.repositories.file_repositories.FileRepository;
+import ru.netology.cloud_service_app.repositories.handlers.dbhandlers.DbHandler;
+import ru.netology.cloud_service_app.repositories.FileRepository;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

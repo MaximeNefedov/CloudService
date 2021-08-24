@@ -10,8 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import ru.netology.cloud_service_app.entities.Role;
 import ru.netology.cloud_service_app.exceptions.secutity_exceptions.InvalidUserDetailsException;
-import ru.netology.cloud_service_app.repositories.user_repositories.CloudServiceUserRepository;
-import ru.netology.cloud_service_app.repositories.user_repositories.UserRepository;
+import ru.netology.cloud_service_app.repositories.CloudServiceUserRepository;
 
 import javax.transaction.Transactional;
 import java.util.Set;

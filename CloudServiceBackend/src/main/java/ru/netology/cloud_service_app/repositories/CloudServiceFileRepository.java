@@ -1,4 +1,4 @@
-package ru.netology.cloud_service_app.repositories.file_repositories;
+package ru.netology.cloud_service_app.repositories;
 
 import org.springframework.web.multipart.MultipartFile;
 import ru.netology.cloud_service_app.entities.UploadedFile;
