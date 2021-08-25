@@ -31,6 +31,7 @@ public class UploadedFile {
     @Enumerated(EnumType.STRING)
     private UploadedFileStatus status;
     private LocalDateTime removalTime;
+    @Getter
     @ManyToOne
     @JoinColumn(name = "user_name")
     @ToString.Exclude

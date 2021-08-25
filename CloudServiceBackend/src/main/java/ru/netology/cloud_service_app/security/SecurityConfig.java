@@ -1,4 +1,4 @@
-package ru.netology.cloud_service_app.security.security_configs;
+package ru.netology.cloud_service_app.security;
 
 import lombok.val;
 import org.springframework.context.annotation.Bean;
@@ -16,13 +16,10 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
-import ru.netology.cloud_service_app.security.success_response_handlers.CustomLogoutSuccessHandler;
-import ru.netology.cloud_service_app.security.jwt.jwt_exceptions.JwtAuthenticationEntryPoint;
-import ru.netology.cloud_service_app.security.security_exception_handlers.SecurityExceptionHandler;
+import ru.netology.cloud_service_app.security.jwt.JwtAuthenticationEntryPoint;
 import ru.netology.cloud_service_app.security.jwt.JwtConfig;
 import ru.netology.cloud_service_app.security.jwt.JwtTokenVerifier;
 import ru.netology.cloud_service_app.security.jwt.JwtUsernamePasswordAuthenticationFilter;
-import ru.netology.cloud_service_app.security.security_user_details_services.CustomUserDetailsService;
 
 import java.util.List;
 

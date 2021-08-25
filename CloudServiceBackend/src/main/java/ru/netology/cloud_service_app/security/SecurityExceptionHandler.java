@@ -1,7 +1,6 @@
-package ru.netology.cloud_service_app.security.jwt.jwt_exceptions;
+package ru.netology.cloud_service_app.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;
@@ -13,14 +12,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@Slf4j
-public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
+public class SecurityExceptionHandler implements AuthenticationEntryPoint {
+
+    private final String MESSAGE = "Authentication error";
+
     @Override
-    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) throws IOException, ServletException {
-        log.error(e.getMessage());
+    public void commence(HttpServletRequest request,
+                         HttpServletResponse response,
+                         AuthenticationException e) throws IOException, ServletException {
         val forbiddenStatus = HttpStatus.FORBIDDEN.value();
         response.setStatus(forbiddenStatus);
-        val exceptionResponse = new ApiResponse(e.getMessage(), forbiddenStatus);
+        val exceptionResponse = new ApiResponse(MESSAGE, forbiddenStatus);
         new ObjectMapper().writeValue(response.getOutputStream(), exceptionResponse);
     }
 }

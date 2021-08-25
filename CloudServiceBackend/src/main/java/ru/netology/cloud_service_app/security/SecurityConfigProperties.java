@@ -1,4 +1,4 @@
-package ru.netology.cloud_service_app.security.security_configs;
+package ru.netology.cloud_service_app.security;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

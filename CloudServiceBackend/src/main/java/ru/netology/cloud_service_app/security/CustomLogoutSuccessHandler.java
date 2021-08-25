@@ -1,4 +1,4 @@
-package ru.netology.cloud_service_app.security.success_response_handlers;
+package ru.netology.cloud_service_app.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;

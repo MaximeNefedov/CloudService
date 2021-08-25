@@ -1,4 +1,4 @@
-package ru.netology.cloud_service_app.advices;
+package ru.netology.cloud_service_app.controllers;
 
 import lombok.val;
 import org.springframework.http.HttpStatus;

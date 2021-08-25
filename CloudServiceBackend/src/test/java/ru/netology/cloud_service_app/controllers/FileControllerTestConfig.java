@@ -5,7 +5,7 @@
 //import org.springframework.context.annotation.ComponentScan;
 //import ru.netology.cloud_service_app.repositories.CloudServiceUserRepository;
 //import ru.netology.cloud_service_app.repositories.DefaultCloudServiceUserRepository;
-//import ru.netology.cloud_service_app.security.security_user_details_services.CustomUserDetailsService;
+//import ru.netology.cloud_service_app.security.CustomUserDetailsService;
 //
 //import static org.mockito.Mockito.mock;
 //

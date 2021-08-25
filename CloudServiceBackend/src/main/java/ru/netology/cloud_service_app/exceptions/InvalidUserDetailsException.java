@@ -1,4 +1,4 @@
-package ru.netology.cloud_service_app.exceptions.secutity_exceptions;
+package ru.netology.cloud_service_app.exceptions;
 
 import org.springframework.security.core.AuthenticationException;
 

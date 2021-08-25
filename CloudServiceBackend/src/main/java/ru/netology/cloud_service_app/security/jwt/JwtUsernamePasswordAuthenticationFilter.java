@@ -9,7 +9,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import ru.netology.cloud_service_app.security.security_exception_handlers.SecurityExceptionHandler;
+import ru.netology.cloud_service_app.security.SecurityExceptionHandler;
 
 import javax.servlet.FilterChain;
 import javax.servlet.http.HttpServletRequest;
