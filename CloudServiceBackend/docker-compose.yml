@@ -14,7 +14,7 @@ services:
       ./
     ports:
       - 8888:8888
-    image: cloud_service_app:1.0
+    image: cloud_service_app:1.1
     depends_on:
       - postgres
     environment:

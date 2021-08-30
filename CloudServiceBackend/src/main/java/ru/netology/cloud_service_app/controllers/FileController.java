@@ -15,14 +15,21 @@ import org.springframework.web.multipart.MultipartFile;
 import ru.netology.cloud_service_app.models.FileData;
 import ru.netology.cloud_service_app.models.NewFilename;
 import ru.netology.cloud_service_app.services.FileService;
-import ru.netology.cloud_service_app.utils.FileUtils;
 
+import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.security.Principal;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Validated
 @RestController
@@ -30,10 +37,25 @@ import java.util.List;
 @Slf4j
 public class FileController {
     private final FileService fileService;
-    private static final String REGEXP = "\\w+\\..+";
+    private static final String REGEXP = ".+\\..+";
+    private static final String EXTENSIONS_FILENAME = "mime_types.txt";
+    private static final Set<String> EXTENSIONS_STORAGE = new HashSet<>();
 
     public FileController(FileService fileService) {
         this.fileService = fileService;
+    }
+
+    @PostConstruct
+    public void setExtensions() {
+        if (Files.exists(Path.of(EXTENSIONS_FILENAME))) {
+            try {
+                val readFile = new String(Files.readAllBytes(Path.of(EXTENSIONS_FILENAME)));
+                EXTENSIONS_STORAGE.addAll(Arrays.stream(readFile.split("\n")).collect(Collectors.toSet()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else
+            throw new IllegalArgumentException(String.format("Файл с расширениями \"%s\" отсутствует", EXTENSIONS_FILENAME));
     }
 
     @PreAuthorize("hasAuthority('READ')")
@@ -59,14 +81,12 @@ public class FileController {
                 .body(new ByteArrayResource(file.getFileBody()));
     }
 
-    //    @PreAuthorize("hasAuthority('WRITE')")
-    @PreAuthorize("hasAuthority('READ')")
+    @PreAuthorize("hasAuthority('WRITE')")
     @PostMapping("/file")
-    public ResponseEntity<String> saveFile(@NotNull MultipartFile file, Principal principal) {
+    public ResponseEntity<String> saveFile(@NotNull MultipartFile file, @RequestParam String filename, Principal principal) {
         val login = principal.getName();
-        log.info(String.format("Принят запрос от пользоваетеля %s на сохранение файла", login));
-        val filename = file.getOriginalFilename();
-        if (filename != null && filename.matches(REGEXP) && FileUtils.isFileHasValidExtension(filename)) {
+        log.info(String.format("Принят запрос от пользоваетеля %s на сохранение файла %s", login, filename));
+        if (filename != null && filename.matches(REGEXP) && EXTENSIONS_STORAGE.contains(filename.substring(filename.lastIndexOf(".") + 1))) {
             fileService.saveFile(file, principal.getName());
             log.info(String.format("Пользователь %s успешно сохранил файл", login));
             return new ResponseEntity<>("Success save", HttpStatus.OK);

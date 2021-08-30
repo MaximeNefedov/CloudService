@@ -7,6 +7,7 @@ create table files
     change_time  timestamp    not null,
     file_body    bytea        not null,
     hash         varchar(255) not null,
+    full_file_hash varchar(255) not null,
     status       varchar(255) not null,
     removal_time timestamp,
     user_name    varchar(255) not null,

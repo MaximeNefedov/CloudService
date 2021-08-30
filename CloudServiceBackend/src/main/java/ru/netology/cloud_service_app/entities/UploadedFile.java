@@ -28,6 +28,8 @@ public class UploadedFile {
     private byte[] fileBody;
     @Column(nullable = false)
     private String hash;
+    @Column(nullable = false)
+    private String fullFileHash;
     @Enumerated(EnumType.STRING)
     private UploadedFileStatus status;
     private LocalDateTime removalTime;

@@ -13,7 +13,5 @@ public interface FileRepository extends JpaRepository<UploadedFile, Long> {
 
     Optional<UploadedFile> findByHash(String hash);
 
-    Optional<UploadedFile> findByHashAndStatus(String hash, UploadedFileStatus status);
-
     void deleteByHash(String hash);
 }
