@@ -62,12 +62,12 @@ public class FileServiceImpl implements FileService {
         }
         val filename = fileToUpload.getOriginalFilename();
         val hash = FileUtils.getFileHash(filename, login);
+        val fullFileHashUploadToDb = FileUtils.getFullFileHash(filename, login, fileToUpload.getBytes());
         log.info("Осуществляется проверка на наличие дупликата или возможности восстановить файл");
         val fileFromDbOptional = fileRepository.findByHash(hash);
         if (fileFromDbOptional.isPresent()) {
             val fileFromDb = fileFromDbOptional.get();
             val fullFileHashFromDb = fileFromDb.getFullFileHash();
-            val fullFileHashUploadToDb = FileUtils.getFullFileHash(filename, login, fileToUpload.getBytes());
             if (fileFromDb.getStatus().equals(DELETED)) {
                 if (fullFileHashFromDb.equals(fullFileHashUploadToDb)) {
                     log.info("Файл пригоден для восстановления");
@@ -102,7 +102,7 @@ public class FileServiceImpl implements FileService {
                 .fileBody(fileBytes)
                 .user(user)
                 .hash(hash)
-                .fullFileHash(FileUtils.getFullFileHash(filename, login, fileBytes))
+                .fullFileHash(fullFileHashUploadToDb)
                 .status(ACTIVE)
                 .build();
         fileRepository.save(fileToUploadEntity);
